@@ -1,30 +1,38 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+//const mongoose2=require('mongoose')
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+var path = require('path');
 
-const app = express();
+var app = express();
 
 // Passport Config
 require('./config/passport')(passport);
 
-// DB Config
-const db = require('./config/keys').mongoURI;
-
 // Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+mongoose.Promise = global.Promise;
+//mongoose2.Promise= global.Promise;
+
+//for connecting todo database
+/* mongoose2.connect('mongodb://localhost/todo')
+  .then(() =>  console.log('db connected'))
+  .catch((err) => console.error(err));
+*/
+  //for connecting adminstrator
+mongoose.connect('mongodb://localhost/todoapp')
+.then(() => console.log('connected with the mongodb database'));
+
 
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+
+//join static folder path for css
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
@@ -56,6 +64,7 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use('/todo', require('./routes/todo.js'));
 
 const PORT = process.env.PORT || 5000;
 

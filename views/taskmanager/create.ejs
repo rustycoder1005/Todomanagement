@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/navbar.ejs %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1><center>Enter task details</center></h1>
+      <form action="/todo/save" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Name of the task</td>
+              <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+              <td>Deadline of this task</td>
+              <td><input type="text" name="deadline"></td>
+            </tr>
+            <tr>
+              <td>priority of this task</td>
+              <td><input type="text" name="priority" /></td>
+            </tr>
+            <tr>
+              <td>percentage completed</td>
+              <td><input type="number" name="percent" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Add</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

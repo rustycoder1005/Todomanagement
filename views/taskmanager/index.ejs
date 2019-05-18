@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/navbar.ejs %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1><center>List of tasks</center></h1>
+      <% if(response.length>0) { %>
+      <table class="list-table">
+        <thead>
+          <tr style="text-align:center;">
+            <th>Task Name</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+            <th>Percent Completed</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% for(var i=0; i<response.length;i++) { %>
+            <tr>
+              <td><center><%= response[i].name%></center></td>
+              <td><center><%= response[i].deadline%></center></td>
+              <td><center><%= response[i].priority%></center></td>
+              <td><center><%= response[i].percent%>%</center></td>
+              <td><a href="/todo/show/<%= response[i]._id%>">Edit</a></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <div>No Task found.</div>
+      <% } %>
+    </div>
+  </body>
+</html>

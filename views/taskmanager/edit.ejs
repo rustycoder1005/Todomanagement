@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit your Todo Task</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h3><a href="/todo">Todo List</a></h3>
+      <h1>Edit your tasks</h1>
+      <form action="/todo/update/<%= response._id%>" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td><input type="text" name="name" value="<%= response.name %>" /></td>
+            </tr>
+            <tr>
+              <td>Deadline</td>
+              <td><input type="text" name="deadline" value="<%= response.deadline %>" /></td>
+            </tr>
+            <tr>
+              <td>Priority</td>
+              <td><input type="text" name="priority" value="<%= response.priority %>" /></td>
+            </tr>
+            <tr>
+              <td>Percentage Completed</td>
+              <td><input type="number" name="percent" value="<%= response.percent %>" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Update</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

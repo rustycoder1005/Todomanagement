@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/navbar.ejs %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Details</h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= response.name %></td>
+          </tr>
+          <tr>
+            <td>Deadline</td>
+            <td>:</td>
+            <td><%= response.deadline %></td>
+          </tr>
+          <tr>
+            <td>Priority of this task</td>
+            <td>:</td>
+            <td><%= response.priority %></td>
+          </tr>
+          <tr>
+            <td>Percentage completed</td>
+            <td>:</td>
+            <td><%= response.percent %> %</td>
+          </tr>
+        </tbody>
+      </table><br>
+      
+      <form action="/todo/edit/<%= response._id%>" method="GET">
+      <center><button type="submit">EDIT</button></center>
+    </form>
+      <form action="/todo/delete/<%= response._id%>" method="post">
+        <center><button type="submit" style="background-color: red;">DELETE</button></center>
+      
+      </form>
+    </div>
+  </body>
+</html>
